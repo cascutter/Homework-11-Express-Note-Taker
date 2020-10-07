@@ -50,19 +50,13 @@ app.post("/api/notes", (req, res) => {
 })
 
 // Deletes note based on id
-app.delete("api/notes/:id", (req, res) => {
+app.delete("/api/notes/:id", (req, res) => {
     let savedNotes = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
     let noteId = req.params.id;
-    let newId = 0;
     console.log(`Note ${noteId} deleted.`);
     savedNotes = savedNotes.filter(currentNote => {
         return currentNote.id != noteId;
     })
-    
-    for (currentNote of savedNotes) {
-        currentNote.id = newId.toString();
-        newId++;
-    }
     
     fs.writeFileSync("db/db.json", JSON.stringify(savedNotes));
     res.json(savedNotes);
