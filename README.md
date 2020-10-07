@@ -14,8 +14,8 @@
 # Description
 Homework 11: Express Note Taker is an application that can be used to write, save, and delete notes. It uses an express backend and can save and retrieve note data from a JSON file. This application uses a combination of JavaScript, Node.js, jQuery, HTML, css, and JSON.
 
-<img src="">
-<img src="">
+<img src="public/assets/Note-Taker-2.png">
+<img src="public/assets/Note-Taker-1.png">
     
 ## Installation
 Clone repository to your local drive. Run ```npm install``` to install dependencies.
@@ -23,7 +23,9 @@ Clone repository to your local drive. Run ```npm install``` to install dependenc
 ## Usage
 The application allows users tom create and save notes. Users can view, as well as delete, previously saved notes.
 
-<img src="">
+<img src="https://media.giphy.com/media/vAVVxrVm2C787zJPu1/giphy.gif">
+<img src="https://media.giphy.com/media/uvTTuo8bsStKqdI7jc/giphy.gif">
+<img src="https://media.giphy.com/media/f0Wmw35MU2vZo32P2T/giphy.gif">
           
 ## Tests
 Testing can be performed using Postman. All tests currently passing.
