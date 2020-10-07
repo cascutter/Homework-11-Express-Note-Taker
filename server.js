@@ -6,15 +6,18 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+
 // Sets up data parsing and route middleware
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "Develop/public")));
+app.use(express.static(path.join(__dirname, "../db/db")));
+
+//app.use(express.static("public"));
 
 // Accesses route files
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
-
 
 // Adds listener
 app.listen(PORT, function() {
