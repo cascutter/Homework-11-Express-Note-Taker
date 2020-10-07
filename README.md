@@ -16,6 +16,7 @@ Homework 11: Express Note Taker is an application that can be used to write, sav
 
 <img src="public/assets/Note-Taker-2.png">
 <img src="public/assets/Note-Taker-1.png">
+<img src="public/assets/Terminal Commands.png">
     
 ## Installation
 Clone repository to your local drive. Run ```npm install``` to install dependencies.
