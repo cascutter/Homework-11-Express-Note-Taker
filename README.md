@@ -12,7 +12,7 @@
 * [License](#license)
     
 # Description
-Homework 11: Express Note Taker is an application that can be used to wite, save, and delete notes. It uses an express backend and can save and retrieve note data from a JSON file. This application uses a combination of JavaScript, Node.js, jQuery, HTML, css, and JSON.
+Homework 11: Express Note Taker is an application that can be used to write, save, and delete notes. It uses an express backend and can save and retrieve note data from a JSON file. This application uses a combination of JavaScript, Node.js, jQuery, HTML, css, and JSON.
 
 <img src="">
 <img src="">
