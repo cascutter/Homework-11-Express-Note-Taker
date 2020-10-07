@@ -4,7 +4,6 @@ module.exports = app => {
 
     // Route to notes
     app.get("/notes", function(req, res) {
-        console.log("ok");
         res.sendFile(path.join(__dirname, "../Develop/public/notes.html"));
     });
 
