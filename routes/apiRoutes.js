@@ -1,54 +1,49 @@
-// Adds required dependencies
+// Modules required
+const express = require("express");
 const path = require("path");
 const fs = require("fs");
 
+
 module.exports = app => {
-    // Sets up note variable
-    fs.readFile("db/db.json", "utf-8", (err, data) => {
-        if(err) throw err;
-    
-        let notes = JSON.parse(data);
 
-    // Set up API route to get data and returns saved notes
+    app.use(express.static(path.join(__dirname, "Develop/db")));
+    app.use(express.static(path.join(__dirname, "Develop/public")));
+
     app.get("/api/notes", function(req, res) {
-        res.JSON(notes);
+        res.sendFile(path.join(__dirname, "../db/db.json"));
     });
     
-    // Sets up API route to post data
-    app.post("/api/notes", function(req, res) {
-        let newNote = req.body;
-        notes.push(newNote);
-        updateDb();
-        return console.log("Added new note: " + newNote.title);
-    });
-    
-    // Retrives note based on id
     app.get("/api/notes/:id", function(req, res) {
-        res.JSON(notes[req.params.id]);
-    });
+        let savedNotes = JSON.parse(fs.readFileSync("../db/db.json", "utf8"));
+        res.json(savedNotes[Number(req.params.id)]);
+    })
 
+    // Assigns ID to note
+    app.post("/api/notes", function(req, res) {
+        let savedNotes = JSON.parse(fs.readFileSync("../db/db.json", "utf8"));
+        let newNote = req.body;
+        let noteId = (savedNotes.length).toString();
+        newNote.id = noteId;
+        savedNotes.push(newNote);
+
+        fs.writeFileSync("../db/db.json", JSON.stringify(savedNotes));
+        console.log(`Note saved! Id ${noteId}. Content:`, newNote);
+        res.json(savedNotes);
+    })
     // Deletes note based on id
     app.delete("api/notes/:id", function(req, res) {
-        let id = req.params.id.toString();
-        console.log(id);
-        for (let i = 0; i < notes.length; i++) {
-            if(notesData[i].id == id) {
-                console.log("Match")
-                res.send(notes[i]);
-                notesData.splice(i, 1);
-                break;
-            };   
-        };
+        let savedNotes = JSON.parse(fs.readFileSync("../db/db.json", "utf8"));
+        let noteId = req.params.id;
+        let newId = 0;
+        console.log(`Note ${noteId} deleted.`);
+        savedNotes = savedNotes.filter(currNote => {
+            return currNote.id != noteId;
+        })
+
+        for (currNote of savedNotes) {
+            currNote.id = newId.toString();
+            newId++;
+        }
     });
-
-    // Updates JSON
-    function updateDb() {
-        fs.writeFileSync("./db/db.json", JSON.stringify(notes, "\t"), err => {
-            if(err) throw(err);
-            return true;
-        });
-    }
-
-});
-
 }
+
